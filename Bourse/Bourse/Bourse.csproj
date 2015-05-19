@@ -39,6 +39,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MaasOne">
+      <HintPath>.\MaasOne.dll</HintPath>
+    </Reference>
+    <Reference Include="MaasOne.Microsoft">
+      <HintPath>.\MaasOne.Microsoft.dll</HintPath>
+    </Reference>
+    <Reference Include="MaasOne.Yahoo">
+      <HintPath>.\MaasOne.Yahoo.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -120,6 +129,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="YahooFinance.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -152,6 +162,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Home\Marche.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

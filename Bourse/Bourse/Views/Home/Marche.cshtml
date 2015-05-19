@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "Marche";
+}
+@{
+    YahooFinance yf = new YahooFinance();
+}
+<h2>Marché.</h2>
+<p>Microsoft -> @yf.GetStockPriceFromSymbol("MSFT")</p>
+<p>Yahoo -> @yf.GetStockPriceFromSymbol("YHOO")</p>
+<p>Google -> @yf.GetStockPriceFromSymbol("GOOG")</p>
+<p>Apple -> @yf.GetStockPriceFromSymbol("AAPL")</p>
+<p>Bitcoin -> @yf.GetStockPriceFromSymbol("BTCUSD=X")</p>
