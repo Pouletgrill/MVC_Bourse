@@ -1,12 +1,24 @@
 ﻿@{
     ViewBag.Title = "Marche";
 }
-@{
-    YahooFinance yf = new YahooFinance();
-}
-<h2>Marché.</h2>
-<p>Microsoft -> @yf.GetStockPriceFromSymbol("MSFT")</p>
-<p>Yahoo -> @yf.GetStockPriceFromSymbol("YHOO")</p>
-<p>Google -> @yf.GetStockPriceFromSymbol("GOOG")</p>
-<p>Apple -> @yf.GetStockPriceFromSymbol("AAPL")</p>
-<p>Bitcoin -> @yf.GetStockPriceFromSymbol("BTCUSD=X")</p>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script src="@Url.Content("~/Scripts/jquery-1.11.3.min.js")" type="text/javascript"></script>
+</head>
+<body id="contributors">
+    <div>
+        <h2>Marché.</h2>
+        @Html.Partial("PartielMarche")
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+
+    $(function () {
+        setInterval(function () { $('#contributors').load('/Home/Marche'); }, 1000); // every 3 sec
+    });
+
+</script>

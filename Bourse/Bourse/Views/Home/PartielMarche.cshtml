@@ -1,0 +1,18 @@
+﻿@using (Html.BeginForm())
+{
+    YahooFinance yf = new YahooFinance();
+    int Qte = 45; 
+     
+    try
+    {
+    <p>Microsoft -> @(yf.GetStockPriceFromSymbol("MSFT") * Qte)</p>
+    <p>Yahoo -> @(yf.GetStockPriceFromSymbol("YHOO") * Qte)</p>
+    <p>Google -> @(yf.GetStockPriceFromSymbol("GOOG") * Qte)</p>
+    <p>Apple -> @(yf.GetStockPriceFromSymbol("AAPL") * Qte)</p>
+    <p>Bitcoin -> @(yf.GetStockPriceFromSymbol("BTCUSD=X") * Qte)</p>
+    }   
+    catch (Exception ex)
+    {
+        <p>@ex.Message</p>
+    }
+}
