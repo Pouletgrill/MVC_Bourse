@@ -1,7 +1,7 @@
 ﻿@using (Html.BeginForm())
 {
     YahooFinance yf = new YahooFinance();
-    int Qte = 45; 
+    int Qte = 1; 
      
     try
     {
@@ -10,6 +10,7 @@
     <p>Google -> @(yf.GetStockPriceFromSymbol("GOOG") * Qte)</p>
     <p>Apple -> @(yf.GetStockPriceFromSymbol("AAPL") * Qte)</p>
     <p>Bitcoin -> @(yf.GetStockPriceFromSymbol("BTCUSD=X") * Qte)</p>
+    <p>Facebook -> @(yf.GetStockPriceFromSymbol("FB") * Qte)</p>
     }   
     catch (Exception ex)
     {

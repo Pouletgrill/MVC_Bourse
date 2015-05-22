@@ -18,6 +18,11 @@ namespace Bourse.Controllers
             return View();
         }
 
+        public ActionResult PartielMarche()
+        {
+            return PartialView();
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

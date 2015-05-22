@@ -1,0 +1,30 @@
+Microsoft										MSFT
+Yahoo											YHOO
+Google											GOOG
+Apple											AAPL
+Bitcoin											BTCUSD=X
+Facebook										FB
+Twitter											TWTR
+Linkedln										LNKD
+Monster Worldwide								MWW
+The Procter & Gamble Company					PG
+Johnson & Johnson								JNJ
+Novartis AG										NVS
+Merck & Co										MRK
+GlaxoSmithKline 								GSK
+Pfizer											PFE
+Sanofi											SNY
+Sony Corporation								SNE
+Randgold Resources Limited						GOLD
+Barrick Gold Corporation						ABX
+Oracle Corporation								ORCL
+International Business Machines Corporation		IMB
+Hewlett-Packard Company							HPQ
+Accenture plc									ACN
+Tesla Motors									TSLA
+General Motors Company							GM
+Ford Motor										F
+Toyota Motor Corporation						TM
+Honda Motor										HMC
+Nissan Motor									NSANY
+Bank of Montreal								BMO
