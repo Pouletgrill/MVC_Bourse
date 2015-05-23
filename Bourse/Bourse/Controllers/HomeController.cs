@@ -9,6 +9,7 @@ namespace Bourse.Controllers
 {
     public class HomeController : Controller
     {
+
         [HttpGet]
         public ActionResult Index()
         {
@@ -56,6 +57,13 @@ namespace Bourse.Controllers
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
+        public ActionResult Subscribe()
+        {
+            ViewBag.Message = "Your Subscribe page.";
 
             return View();
         }

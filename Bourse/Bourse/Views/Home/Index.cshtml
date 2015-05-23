@@ -1,23 +1,35 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Accueil";
 }
+@{
+    <div class="jumbotron">
+        <h1>BourseSim</h1>
+        <p class="lead">BourseSim est une application web qui nous permet d'apprendre, en tout sécurité financière, les rudiment de la bourse.</p>
+        <p><a href="~/home/Marche" class="btn btn-primary btn-large">Marché &raquo;</a></p>
+    </div>
 
-<div class="jumbotron">
-    <h1>BourseSim</h1>
-    <p class="lead">BourseSim est une application web qui nous permet d'apprendre, en tout sécurité financière, les rudiment de la bourse.</p>
-    <p><a href="~/home/Marche" class="btn btn-primary btn-large">Marché &raquo;</a></p>
-</div>
+    if (!(bool)Session["UserValid"])
+    {
+        <h2>Authentification</h2>
+        using (Html.BeginForm())
+        {
+            @Html.Label("Nom d'usager") <br />
+            @Html.TextBox("UserName") <br />
 
-<h2>Authentification</h2>
-@using (Html.BeginForm())
-{
-    @Html.Label("Nom d'usager") <br />
-    @Html.TextBox("UserName") <br />
+            @Html.Label("Mot de passe")<br />
+            @Html.Password("Password")<br />
 
-    @Html.Label("Mot de passe")<br />
-    @Html.Password("Password")<br />
+            <br />
+            <button type="submit">Connexion...</button>
+        }
+    }
+    else
+    {
+        using (Html.BeginForm())
+        {
+            <button type="submit"> Déconnexion</button>
+            Session["UserValid"] = false;
+        }
 
-    <br />
-    <button type="submit">Connexion...</button>
-
+    }
 }

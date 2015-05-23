@@ -1,17 +1,17 @@
 ﻿@{
-    ViewBag.Title = "Marche";
-    
+    ViewBag.Title = "Marché";
 }
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <title>Marché</title>
     <script src="@Url.Content("~/Scripts/jquery-1.11.3.min.js")" type="text/javascript"></script>
 </head>
 <body>
     <h2>Marché.</h2>
-    <div id="contributors">        
+    <div id="contributors">
     </div>
 </body>
 </html>
@@ -31,7 +31,8 @@
 
     ChargeVuePartielle();
     $(function () {
-        timer = window.setInterval("ChargeVuePartielle()", 2000);
+        timer = window.setInterval("ChargeVuePartielle()", 3000);
     });
 </script>
+
 
