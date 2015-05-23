@@ -8,31 +8,16 @@
     <p><a href="~/home/Marche" class="btn btn-primary btn-large">Marché &raquo;</a></p>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Lorem ipsum</h2>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-             Nam vel varius ex. Fusce ac consequat neque. Aliquam ultrices,
-             mauris a aliquam imperdiet, purus metus cursus leo,
-             at dapibus metus enim vel enim. Integer nullam.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>consectetur adipiscing</h2>
-        <p>  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-             Nam vel varius ex. Fusce ac consequat neque. Aliquam ultrices,
-             mauris a aliquam imperdiet, purus metus cursus leo,
-             at dapibus metus enim vel enim. Integer nullam.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>cursus leo</h2>
-        <p>  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-             Nam vel varius ex. Fusce ac consequat neque. Aliquam ultrices,
-             mauris a aliquam imperdiet, purus metus cursus leo,
-             at dapibus metus enim vel enim. Integer nullam.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+<h2>Authentification</h2>
+@using (Html.BeginForm())
+{
+    @Html.Label("Nom d'usager") <br />
+    @Html.TextBox("UserName") <br />
+
+    @Html.Label("Mot de passe")<br />
+    @Html.Password("Password")<br />
+
+    <br />
+    <button type="submit">Connexion...</button>
+
+}
