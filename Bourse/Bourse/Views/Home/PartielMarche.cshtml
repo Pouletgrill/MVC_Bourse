@@ -1,19 +1,30 @@
 ﻿@using (Html.BeginForm())
 {
-    YahooFinance yf = new YahooFinance();
-    int Qte = 1; 
-     
-    try
-    {
-    <p>Microsoft -> @(yf.GetStockPriceFromSymbol("MSFT") * Qte)</p>
-    <p>Yahoo -> @(yf.GetStockPriceFromSymbol("YHOO") * Qte)</p>
-    <p>Google -> @(yf.GetStockPriceFromSymbol("GOOG") * Qte)</p>
-    <p>Apple -> @(yf.GetStockPriceFromSymbol("AAPL") * Qte)</p>
-    <p>Bitcoin -> @(yf.GetStockPriceFromSymbol("BTCUSD=X") * Qte)</p>
-    <p>Facebook -> @(yf.GetStockPriceFromSymbol("FB") * Qte)</p>
-    }   
-    catch (Exception ex)
-    {
-        <p>@ex.Message</p>
-    }
 }
+<table border="1">
+    @{
+        YahooFinance yf = new YahooFinance();
+        int Qte = 1;
+        for (int i = 0;i<10;i++)
+        {
+            <tr>
+                <td>
+                    <img src="~/Images/GSK.png" width="32px" height="32px" />
+                </td>                
+                <td>
+                    <a href="~/Home/Index/GSK">GlaxoSmithKline -> @(yf.GetStockPriceFromSymbol("GSK") * Qte)</a>
+                </td>
+            </tr>
+        }
+    }
+</table>
+@*@{
+        YahooFinance yf = new YahooFinance();
+        int Qte = 1;
+        <td></td>
+        <td>Yahoo -> @(yf.GetStockPriceFromSymbol("YHOO") * Qte)</td>
+        <td>Google -> @(yf.GetStockPriceFromSymbol("GOOG") * Qte)</td>
+        <td>Apple -> @(yf.GetStockPriceFromSymbol("AAPL") * Qte)</td>
+        <td>Bitcoin -> @(yf.GetStockPriceFromSymbol("BTCUSD=X") * Qte)</td>
+        <td>Facebook -> @(yf.GetStockPriceFromSymbol("FB") * Qte)</td>
+    }*@
