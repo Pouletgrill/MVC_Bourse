@@ -11,6 +11,7 @@
 
     if (!(bool)Session["UserValid"])
     {
+        <p>@TempData["Notice"]</p>
         <h2>Authentification</h2>
         using (Html.BeginForm())
         {
@@ -23,10 +24,5 @@
             <br />
             <button type="submit">Connexion...</button>
         }
-    }
-    else
-    {
-        <p>Vous êtes connecté</p>
-
     }
 }

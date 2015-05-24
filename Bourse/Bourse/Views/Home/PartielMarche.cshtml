@@ -1,30 +1,33 @@
-﻿@using (Html.BeginForm())
+﻿@model Bourse.Models.BourseModel
+@using (Html.BeginForm())
 {
 }
 <table border="1">
     @{
         YahooFinance yf = new YahooFinance();
         int Qte = 1;
-        for (int i = 0;i<10;i++)
+        if (Model != null)
         {
-            <tr>
-                <td>
-                    <img src="~/Images/GSK.png" width="32px" height="32px" />
-                </td>                
-                <td>
-                    <a href="~/Home/Index/GSK">GlaxoSmithKline -> @(yf.GetStockPriceFromSymbol("GSK") * Qte)</a>
-                </td>
-            </tr>
+            Model.SelectAll();
+            
+            while (Model.Next())
+            {
+                <tr>
+                    <td>
+                        @{
+                            String image = "~/Images/" + @Model.Symbol + ".png";
+                            <img src=@Href(image) width="32px" height="32px" />
+                        }
+                        
+                    </td>
+                    <td>
+                        @{
+                            String path = "~/Home/Index/" + @Model.Symbol;
+                            <a href=@Href(path)>@Model.Name -> @yf.GetStockPriceFromSymbol(Model.Symbol)</a>
+                        }
+                    </td>
+                </tr>
+            }
         }
     }
 </table>
-@*@{
-        YahooFinance yf = new YahooFinance();
-        int Qte = 1;
-        <td></td>
-        <td>Yahoo -> @(yf.GetStockPriceFromSymbol("YHOO") * Qte)</td>
-        <td>Google -> @(yf.GetStockPriceFromSymbol("GOOG") * Qte)</td>
-        <td>Apple -> @(yf.GetStockPriceFromSymbol("AAPL") * Qte)</td>
-        <td>Bitcoin -> @(yf.GetStockPriceFromSymbol("BTCUSD=X") * Qte)</td>
-        <td>Facebook -> @(yf.GetStockPriceFromSymbol("FB") * Qte)</td>
-    }*@

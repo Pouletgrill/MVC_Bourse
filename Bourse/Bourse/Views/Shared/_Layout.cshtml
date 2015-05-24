@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - BourseSim</title>
@@ -23,11 +23,20 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
                     <li>@Html.ActionLink("Inscription", "Subscribe", "Home")</li>
-                    <li>@Html.ActionLink("Marché", "Marche", "Home")</li>                    
+                    <li>@Html.ActionLink("Marché", "Marche", "Home")</li>
                 </ul>
             </div>
         </div>
     </div>
+    @{
+        if ((bool)Session["UserValid"])
+        {
+            <div style="text-align:right;
+                 font-size:20px;
+                 color:black;
+                 padding-right:20px">Solde de <text style="font-weight:bold">@Session["FullName"]</text>: @Session["Solde"]$</div>
+        }
+    }
     <div class="container body-content">
         @RenderBody()
         <hr />

@@ -25,6 +25,9 @@ namespace Bourse.Controllers
                 {
                     TempData["Notice"] = "Vous êtes maintenant connecté...";
                     Session["UserValid"] = true;
+                    Session["UserId"] = users.ID;
+                    Session["FullName"] = users.FullName;
+                    Session["Solde"] = users.Solde;
                     return RedirectToAction("Marche", "Home");
                 }
                 else
@@ -44,7 +47,8 @@ namespace Bourse.Controllers
 
         public ActionResult PartielMarche()
         {
-            return PartialView();
+            BourseModel bourse = new BourseModel(Session["MainDB"]); 
+            return PartialView(bourse);
         }
 
         public ActionResult About()
