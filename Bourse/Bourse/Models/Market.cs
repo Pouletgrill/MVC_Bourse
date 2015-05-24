@@ -37,5 +37,20 @@ namespace Bourse.Models
         {
             UpdateRecord(Symbol, Name);
         }
+
+        public bool Exist(String Symbol)
+        {
+            bool exist = false;
+
+            SelectByFieldName("SYMBOL", Symbol);
+
+            if (reader.HasRows)
+            {
+                Next();
+                exist = true;
+                EndQuerySQL();
+            }
+            return exist;
+        }
     }
 }

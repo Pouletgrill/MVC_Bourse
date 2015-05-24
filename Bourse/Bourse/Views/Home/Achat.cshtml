@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Achat";
+}
+@{
+    if ((bool)Session["UserValid"])
+    {
+        <h2>Achat</h2>
+        @ViewData["id"]
+    }
+    else
+    {
+        <h2>Vous devez être <a href="~/Home/Index">Conneté</a> pour acheter des actions de @ViewData["id"]</h2>
+    }
+}
+
+
+

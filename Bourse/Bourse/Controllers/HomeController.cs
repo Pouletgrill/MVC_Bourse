@@ -47,7 +47,7 @@ namespace Bourse.Controllers
 
         public ActionResult PartielMarche()
         {
-            BourseModel bourse = new BourseModel(Session["MainDB"]); 
+            BourseModel bourse = new BourseModel(Session["MainDB"]);
             return PartialView(bourse);
         }
 
@@ -70,6 +70,16 @@ namespace Bourse.Controllers
             ViewBag.Message = "Your Subscribe page.";
 
             return View();
+        }
+
+        public ActionResult Achat(string id)
+        {
+            BourseModel bourse = new BourseModel(Session["MainDB"]);
+            ViewData["id"] = id;
+            if (string.IsNullOrWhiteSpace(id) || !bourse.Exist(id))
+                return View("Error");
+            else
+                return View();
         }
     }
 }

@@ -200,6 +200,7 @@
     <Content Include="Views\Home\Marche.cshtml" />
     <Content Include="Views\Home\PartielMarche.cshtml" />
     <Content Include="Views\Home\Subscribe.cshtml" />
+    <Content Include="Views\Home\Achat.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
