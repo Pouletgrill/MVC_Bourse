@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Bourse.Models.UsersModel
+@{
     ViewBag.Title = "Accueil";
 }
 @{
@@ -25,11 +26,7 @@
     }
     else
     {
-        using (Html.BeginForm())
-        {
-            <button type="submit"> Déconnexion</button>
-            Session["UserValid"] = false;
-        }
+        <p>Vous êtes connecté</p>
 
     }
 }
