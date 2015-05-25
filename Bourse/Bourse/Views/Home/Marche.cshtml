@@ -21,7 +21,7 @@
     var timer;
     function ChargeVuePartielle() {
         $.ajax({
-            url: '@Url.Action("PartielMarche", new {id = ViewBag.Id  })',
+            url: '@Url.Action("PartielMarche")',
             type: 'GET',
             dataType: 'html',
             success: function (result) {

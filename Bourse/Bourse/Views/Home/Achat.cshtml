@@ -2,14 +2,14 @@
     ViewBag.Title = "Achat";
 }
 @{
-    if ((bool)Session["UserValid"])
+    if (!(bool)Session["UserValid"])
     {
-        <h2>Achat</h2>
-        @ViewData["id"]
+        <h2>Vous devez être <a href="~/Home/Index">Conneté</a> pour acheter des actions de @ViewData["id"]</h2>
     }
     else
     {
-        <h2>Vous devez être <a href="~/Home/Index">Conneté</a> pour acheter des actions de @ViewData["id"]</h2>
+        <h2>Achat</h2>
+        <p style="font-size:20px">@ViewData["id"] <text style="font-weight:bolder">@ViewData["Prix"]</text> $ X @Html.TextBox("bla", "", new { @type = "number", @min = "1", @max = "1000000", @values = "1" }) </p>
     }
 }
 

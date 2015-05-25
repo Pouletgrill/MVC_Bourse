@@ -75,11 +75,16 @@ namespace Bourse.Controllers
         public ActionResult Achat(string id)
         {
             BourseModel bourse = new BourseModel(Session["MainDB"]);
-            ViewData["id"] = id;
             if (string.IsNullOrWhiteSpace(id) || !bourse.Exist(id))
                 return View("Error");
             else
-                return View();
+            {
+               ViewData["id"] = id;
+               YahooFinance yf = new YahooFinance();
+               ViewData["Prix"] = yf.GetStockPriceFromSymbol(id);
+               return View();
+            }
+                
         }
     }
 }
