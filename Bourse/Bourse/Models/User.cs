@@ -20,8 +20,6 @@ namespace Bourse.Models
 
         public String CarteCredit { get; set; }
 
-        public String Avatar { get; set; }
-
         public double Solde { get; set; }
 
 
@@ -43,31 +41,16 @@ namespace Bourse.Models
             FullName = this["FULLNAME"];
             EMail = this["EMAIL"];
             CarteCredit = this["CARTE_CREDIT"];
-            Avatar = this["AVATAR"];
             Solde = double.Parse(this["SOLDE"]);
         }
 
-        public String GetAvatarURL()
-        {
-            String url;
-            if (String.IsNullOrEmpty(Avatar))
-            {
-                url = @"Images/Anonymous.png";
-            }
-            else
-            {
-                url = @"Avatars/" + Avatar + ".png";
-            }
-
-            return url;
-        }
         public override void Insert()
         {
-            InsertRecord(UserName, Password, FullName, EMail, CarteCredit, Avatar, Solde);
+            InsertRecord(UserName, Password, FullName, EMail, CarteCredit, Solde);
         }
         public override void Update()
         {
-            UpdateRecord(UserName, Password, FullName, EMail, CarteCredit, Avatar, Solde);
+            UpdateRecord(UserName, Password, FullName, EMail, CarteCredit, Solde);
         }
 
         public bool Exist(String userName)
