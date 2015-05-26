@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "Profil";
+}
+@{
+    if (!(bool)Session["UserValid"])
+    {
+        <h2>Vous devez être <a href="~/Home/Index">Conneté</a> pour modifier votre profil</h2>
+    }
+    else
+    {
+        <h2>Profil</h2>
+        <p>YOLO</p>
+    }
+}

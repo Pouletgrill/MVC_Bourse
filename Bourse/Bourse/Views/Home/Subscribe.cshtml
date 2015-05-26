@@ -1,7 +1,44 @@
-﻿
+﻿@model Bourse.Models.UsersModel
 @{
-    ViewBag.Title = "Subscribe";
+    ViewBag.Title = "Inscription";
 }
 
-<h2>Subscribe</h2>
+<h2>Inscription</h2>
+<p style="color:red">@TempData["Notice"]</p>
 
+@using (Html.BeginForm("Subscribe",
+                        "Home",
+                        FormMethod.Post,
+                        new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.Label("Nom d'usager") <br />
+        @Html.TextBox("UserName", Model.UserName) <br /><br />
+
+
+        @Html.Label("Mot de passe")<br />
+        @Html.TextBox("Password", Model.Password)<br /><br />
+
+
+        @Html.Label("Nom au complet")<br />
+        @Html.TextBox("FullName", Model.FullName)<br /><br />
+
+
+        @Html.Label("Courriel")<br />
+        @Html.TextBox("EMail", Model.EMail)<br /><br />
+
+        @Html.Label("Numero de carte de Crédit")<br />
+        <div style="font-style:italic">(un solde par défault de 1 000$ vous sera attribué)</div>
+        @Html.TextBox("CarteCredit", Model.CarteCredit)<br /><br />
+
+        <br />
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Créer..." class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}

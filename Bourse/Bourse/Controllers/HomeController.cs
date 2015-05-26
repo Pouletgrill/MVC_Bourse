@@ -65,10 +65,46 @@ namespace Bourse.Controllers
             return View();
         }
 
+        [HttpGet]
         public ActionResult Subscribe()
         {
-            ViewBag.Message = "Your Subscribe page.";
+            return View(new UsersModel());
+        }
+        [HttpPost]
 
+        public ActionResult Subscribe(UsersModel newUser)
+        {
+            UsersModel users = new UsersModel(Session["MainDB"]);
+            if (!String.IsNullOrEmpty(newUser.UserName))
+            {
+                if (!users.Exist(newUser.UserName))
+                {
+                    if (!String.IsNullOrEmpty(newUser.Password))
+                    {
+                        users.UserName = newUser.UserName;
+                        users.Password = newUser.Password;
+                        users.FullName = newUser.FullName;
+                        users.EMail = newUser.EMail;
+                        users.CarteCredit = newUser.CarteCredit;
+                        users.Solde = 1000.00;
+                        users.Insert();
+                        return RedirectToAction("Index", "Home"); ;
+                    }
+                    else
+                    {
+                        TempData["Notice"] = "Le mot de passe est vide...";
+                    }
+                }
+                else
+                {
+                    TempData["Notice"] = "Cet usager existe déjà...";
+                }
+            }
+            return View(newUser);
+        }
+
+        public ActionResult Profil()
+        {    
             return View();
         }
 
