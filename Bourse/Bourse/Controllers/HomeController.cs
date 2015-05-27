@@ -40,6 +40,12 @@ namespace Bourse.Controllers
             return View();
         }
 
+        public ActionResult Deconnexion()
+        {
+            Session["UserValid"] = false;
+            return RedirectToAction("Index", "Home");
+        }
+
         public ActionResult Marche()
         {
             return View();
