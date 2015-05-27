@@ -197,12 +197,21 @@ namespace Bourse.Controllers
             return PartialView(Achat);
         }
 
-        public ActionResult Vendre(String ID)
+        public ActionResult Vendre(String ID, string Symbol)
         {
-            //double Gain = 
+            YahooFinance yf = new YahooFinance();
+            //Save Gain + delete Achat
             AchatModel Achat = new AchatModel(Session["MainDB"]);
+            Achat.SelectByID(ID);
+            double Gain = Math.Round((yf.GetStockPriceFromSymbol(Symbol) * Achat.QteAction) - (Achat.PrixAchat * Achat.QteAction),2);
             Achat.DeleteRecordByID(ID);
-            return RedirectToAction("List", "Home");
+            //Update User Solde
+            UsersModel User = new UsersModel(Session["MainDB"]);
+            User.SelectByID(Session["UserId"].ToString());
+            User.Solde = User.Solde + Gain;
+            Session["Solde"] = User.Solde;
+            User.Update();
+            return RedirectToAction("Actions", "Home");
         }
     }
 }
