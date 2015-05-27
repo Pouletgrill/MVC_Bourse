@@ -169,6 +169,15 @@ namespace SqlExpressUtilities
             return reader.HasRows;
         }
 
+        public virtual bool SelectByUSERID(String USERID, string orderBy = "")
+        {
+            string sql = "SELECT * FROM " + SQLTableName + " WHERE USERID = " + USERID;
+            if (orderBy != "")
+                sql += " ORDER BY " + orderBy;
+            QuerySQL(sql);
+            return reader.HasRows;
+        }
+
         public bool SelectByFieldName(String FieldName, object value)
         {
             string SQL = "SELECT * FROM " + SQLTableName + " WHERE " + FieldName + " = ";

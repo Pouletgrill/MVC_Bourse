@@ -1,0 +1,93 @@
+﻿@model Bourse.Models.AchatModel
+@{
+    ViewBag.Title = "PartielActions";
+}
+
+@using (Html.BeginForm())
+{
+}
+<table style="border: 1px solid black" width="100%">
+    <tr>
+        <td>
+            <div class="TeteTableau">Symbole</div>
+        </td>
+        <td>
+            <div class="TeteTableau">Quantité Acheté</div>
+        </td>
+        <td>
+            <div class="TeteTableau">Prix à l'achat</div>
+        </td>
+        <td>
+            <div class="TeteTableau">Prix Présentement</div>
+        </td>
+        <td>
+            <div class="TeteTableau">Profit</div>
+        </td>
+        <td>
+            <div class="TeteTableau">Action</div>
+        </td>
+    </tr>
+    @{
+        if (Model != null)
+        {
+            YahooFinance yf = new YahooFinance();
+            Model.SelectByUSERID(Session["UserId"].ToString());
+            while (Model.Next())
+            {
+                <tr>
+                    <td>
+                        <p>@Model.SymbolId</p>
+                    </td>
+                    <td>
+                        <p>@Model.QteAction</p>
+                    </td>
+                    <td>
+                        <p>@Model.PrixAchat$</p>
+                    </td>
+                    <td>
+                        @{
+                            double NewPrix = yf.GetStockPriceFromSymbol(Model.SymbolId);
+                            if (NewPrix > Model.PrixAchat)
+                            {
+                                <p style="color:green">@NewPrix$</p>
+                            }
+                            else if (NewPrix == Model.PrixAchat)
+                            {
+                                <p style="color:black">@NewPrix$</p>
+                            }
+                            else
+                            {
+                               <p style="color:red">@NewPrix$</p> 
+                            }
+                        }                        
+                    </td>
+                    <td>
+                        @{
+                            double Profit = Math.Round((yf.GetStockPriceFromSymbol(Model.SymbolId)*Model.QteAction)-
+                                (Model.PrixAchat * Model.QteAction),2);
+                            if (Profit > 0)
+                            {
+                                <p style="color:green">@Profit$</p>
+                            }
+                            else if (Profit == 0)
+                            {
+                                <p style="color:black">@Profit$</p>
+                            }
+                            else
+                            {
+                                <p style="color:red">@Profit$</p>
+                            }
+                        }
+                    </td>
+                    <td>
+                        <input type="button" value="vendre" />
+                    </td>
+                </tr>
+            }
+
+        }
+}
+</table>
+
+
+
