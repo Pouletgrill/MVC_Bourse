@@ -147,6 +147,18 @@ namespace SqlExpressUtilities
             return reader.HasRows;
         }
 
+        public virtual bool Select20from(int Start)
+        {
+            //Vérifie si plus grand ou égale a 0 sinon initialise a 0
+            if (Start < 0)
+                Start = 0;
+
+            string sql = "SELECT * FROM (SELECT *, ROW_NUMBER() OVER (ORDER BY SYMBOL) AS RowNum FROM Bourse ) AS MyDerivedTable " +
+            "WHERE MyDerivedTable.RowNum BETWEEN " + Start.ToString() + " AND " + (Start+20).ToString();
+            QuerySQL(sql);
+            return reader.HasRows;
+        }
+
         // Extraire l'enregistrement d'id ID
         public bool SelectByID(String ID)
         {
