@@ -30,8 +30,10 @@
         @Html.TextBox("EMail", Model.EMail)<br /><br />
 
         @Html.Label("Numero de carte de Crédit")<br />
-        <div style="font-style:italic">(un solde par défault de 1 000$ vous sera attribué)</div>
         @Html.TextBox("CarteCredit", Model.CarteCredit)<br /><br />
+
+        @Html.Label("Solde a ajouter depuis la carte")<br />
+        @Html.TextBox("Solde", "1", new { @type = "number", @min = "1" })
 
         <br />
 

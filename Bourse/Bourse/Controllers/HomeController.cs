@@ -86,7 +86,8 @@ namespace Bourse.Controllers
                         users.FullName = newUser.FullName;
                         users.EMail = newUser.EMail;
                         users.CarteCredit = newUser.CarteCredit;
-                        users.Solde = 1000.00;
+                        users.Solde = double.Parse(newUser.Solde.ToString());
+
                         users.Insert();
                         return RedirectToAction("Index", "Home"); ;
                     }
@@ -103,9 +104,40 @@ namespace Bourse.Controllers
             return View(newUser);
         }
 
+        [HttpGet]
         public ActionResult Profil()
-        {    
+        {
+            if ((bool)Session["UserValid"])
+            {
+                UsersModel users = new UsersModel(Session["MainDB"]);
+                users.SelectByID(Session["UserId"].ToString());
+                users.Next();
+                users.EndQuerySQL();
+                return View(users);
+            }
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Profil(UsersModel users)
+        {
+            // users est une nouvelle instance peuplée par le formulaire
+            UsersModel updatedUser = new UsersModel(Session["MainDB"]);
+            updatedUser.SelectByID(Session["UserId"].ToString());
+            updatedUser.EndQuerySQL();
+
+            updatedUser.UserName = users.UserName;
+            updatedUser.FullName = users.FullName;
+            updatedUser.Password = users.Password;
+            updatedUser.EMail = users.EMail;
+            updatedUser.CarteCredit = users.CarteCredit;
+            if (users.Solde > 0)
+                updatedUser.Solde = users.Solde + updatedUser.Solde;
+
+            updatedUser.Update();
+            Session["FullName"] = updatedUser.FullName;
+            Session["Solde"] = updatedUser.Solde;
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult Achat(string id)
@@ -115,12 +147,12 @@ namespace Bourse.Controllers
                 return View("Error");
             else
             {
-               ViewData["id"] = id;
-               YahooFinance yf = new YahooFinance();
-               ViewData["Prix"] = yf.GetStockPriceFromSymbol(id);
-               return View();
+                ViewData["id"] = id;
+                YahooFinance yf = new YahooFinance();
+                ViewData["Prix"] = yf.GetStockPriceFromSymbol(id);
+                return View();
             }
-                
+
         }
     }
 }

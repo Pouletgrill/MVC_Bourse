@@ -50,7 +50,7 @@ namespace Bourse.Models
         }
         public override void Update()
         {
-            UpdateRecord(UserName, Password, FullName, EMail, CarteCredit, Solde);
+            UpdateRecord(ID, UserName, Password, FullName, EMail, CarteCredit, Solde);
         }
 
         public bool Exist(String userName)

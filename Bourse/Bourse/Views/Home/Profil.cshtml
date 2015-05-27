@@ -1,4 +1,4 @@
-﻿
+﻿@model Bourse.Models.UsersModel
 @{
     ViewBag.Title = "Profil";
 }
@@ -10,6 +10,35 @@
     else
     {
         <h2>Profil</h2>
-        <p>YOLO</p>
+        using (Html.BeginForm("Profil",
+                        "Home",
+                        FormMethod.Post,
+                        new { enctype = "multipart/form-data" }))
+        {
+            @Html.Label("Nom d'usager") <br />
+            @Html.TextBox("UserName", Model.UserName); <br /><br />
+
+
+            @Html.Label("Mot de passe")<br />
+            @Html.TextBox("Password", Model.Password)<br /><br />
+
+
+            @Html.Label("Nom au complet")<br />
+            @Html.TextBox("FullName", Model.FullName)<br /><br />
+
+
+            @Html.Label("Courriel")<br />
+            @Html.TextBox("EMail", Model.EMail)<br /><br />
+            
+            @Html.Label("Numero de carte de Crédit")<br />        
+            @Html.TextBox("CarteCredit", Model.CarteCredit)<br /><br />
+    
+            @Html.Label("Solde a ajouter depuis la carte")<br />  
+            @Html.TextBox("Solde", "0", new { @type = "number", @min = "0"})
+            
+            <br />
+            <button type="submit">Soumettre...</button>
+        }
+
     }
 }
