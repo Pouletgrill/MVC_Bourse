@@ -196,5 +196,13 @@ namespace Bourse.Controllers
             AchatModel Achat = new AchatModel(Session["MainDB"]);
             return PartialView(Achat);
         }
+
+        public ActionResult Vendre(String ID)
+        {
+            //double Gain = 
+            AchatModel Achat = new AchatModel(Session["MainDB"]);
+            Achat.DeleteRecordByID(ID);
+            return RedirectToAction("List", "Home");
+        }
     }
 }
