@@ -1,0 +1,38 @@
+﻿@model Bourse.Models.AchatModel
+@{
+    ViewBag.Title = "Mes Actions";
+}
+@{
+    if (!(bool)Session["UserValid"])
+    {
+        <h2>Vous devez être <a href="~/Home/Index">Conneté</a> pour accéder à vos actions</h2>
+    }
+    else
+    {
+        <h2>Mes Actions</h2>
+
+        <script src="@Url.Content("~/Scripts/jquery-1.11.3.min.js")" type="text/javascript"></script>
+    
+        <div id="contributors">
+        </div>
+
+        <script type="text/javascript">
+            var timer;
+            function ChargeVuePartielle() {
+                $.ajax({
+                    url: '@Url.Action("PartielActions")',
+                    type: 'GET',
+                    dataType: 'html',
+                    success: function (result) {
+                        $('#contributors').html(result);
+                    }
+                });
+            }
+
+            ChargeVuePartielle();
+            $(function () {
+                timer = window.setInterval("ChargeVuePartielle()", 3000);
+            });
+        </script>
+    }
+}

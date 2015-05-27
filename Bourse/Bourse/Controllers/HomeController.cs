@@ -176,7 +176,7 @@ namespace Bourse.Controllers
                 Session["Solde"] = Math.Round(double.Parse(Session["Solde"].ToString()) - (am.QteAction * double.Parse(Session["Prix"].ToString())), 2);
                 User.Update();
                 /////////////////////////////
-                return RedirectToAction("Index", "Home");//DEVRA REDIRIGÉ VERS LA LISTE DES ACHATS
+                return RedirectToAction("Actions", "Home");
             }
             else
             {
@@ -184,6 +184,17 @@ namespace Bourse.Controllers
                     (am.QteAction * double.Parse(Session["Prix"].ToString())) + "$ d'action";
             }
             return View();
+        }
+
+        public ActionResult Actions()
+        {
+            return View();
+        }
+
+        public ActionResult PartielActions()
+        {
+            AchatModel Achat = new AchatModel(Session["MainDB"]);
+            return PartialView(Achat);
         }
     }
 }

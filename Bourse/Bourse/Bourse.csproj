@@ -203,6 +203,8 @@
     <Content Include="Views\Home\Subscribe.cshtml" />
     <Content Include="Views\Home\Achat.cshtml" />
     <Content Include="Views\Home\Profil.cshtml" />
+    <Content Include="Views\Home\Actions.cshtml" />
+    <Content Include="Views\Home\PartielActions.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
