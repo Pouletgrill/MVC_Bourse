@@ -23,7 +23,7 @@ namespace Bourse.Controllers
             {
                 if (users.Password == Password)
                 {
-                    TempData["Notice"] = "Vous êtes maintenant connecté...";
+                    //TempData["Notice"] = "Vous êtes maintenant connecté...";
                     Session["UserValid"] = true;
                     Session["UserId"] = users.ID;
                     Session["FullName"] = users.FullName;
@@ -140,6 +140,7 @@ namespace Bourse.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [HttpGet]
         public ActionResult Achat(string id)
         {
             BourseModel bourse = new BourseModel(Session["MainDB"]);
@@ -147,12 +148,42 @@ namespace Bourse.Controllers
                 return View("Error");
             else
             {
-                ViewData["id"] = id;
+                Session["SymbolId"] = id;
                 YahooFinance yf = new YahooFinance();
-                ViewData["Prix"] = yf.GetStockPriceFromSymbol(id);
-                return View();
+                Session["Prix"] = yf.GetStockPriceFromSymbol(id);
+                return View(new AchatModel());
             }
+        }
+        [HttpPost]
+        public ActionResult Achat(AchatModel am)
+        {
+            if (am.QteAction * double.Parse(Session["Prix"].ToString()) <= double.Parse(Session["Solde"].ToString()))
+            {
+                ViewData["Notif"] = "";
+                //Ajout de l'achat dans la BD
+                AchatModel Achat = new AchatModel(Session["MainDB"]);
+                Achat.UserId = long.Parse(Session["UserId"].ToString());
+                Achat.SymbolId = Session["SymbolId"].ToString();
+                Achat.QteAction = am.QteAction;
+                Achat.PrixAchat = double.Parse(Session["Prix"].ToString());
 
+                Achat.Insert();
+                //Update du solde de l'usager
+                UsersModel User = new UsersModel(Session["MainDB"]);
+                User.SelectByID(Session["UserId"].ToString());
+                User.EndQuerySQL();
+                User.Solde = Math.Round(double.Parse(Session["Solde"].ToString()) - (am.QteAction * double.Parse(Session["Prix"].ToString())), 2);
+                Session["Solde"] = Math.Round(double.Parse(Session["Solde"].ToString()) - (am.QteAction * double.Parse(Session["Prix"].ToString())), 2);
+                User.Update();
+                /////////////////////////////
+                return RedirectToAction("Index", "Home");//DEVRA REDIRIGÉ VERS LA LISTE DES ACHATS
+            }
+            else
+            {
+                ViewData["Notif"] = "Vous n'avez pas assez d'argent pour acheter " +
+                    (am.QteAction * double.Parse(Session["Prix"].ToString())) + "$ d'action";
+            }
+            return View();
         }
     }
 }

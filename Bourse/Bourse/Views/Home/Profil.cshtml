@@ -10,6 +10,7 @@
     else
     {
         <h2>Profil</h2>
+        <p style="color:red">@TempData["Notice"]</p>
         using (Html.BeginForm("Profil",
                         "Home",
                         FormMethod.Post,
