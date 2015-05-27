@@ -154,3 +154,4 @@ $RECYCLE.BIN/
 
 # Mac desktop service store files
 .DS_Store
+Bourse/Bourse/App_Data/MainDB.mdf
