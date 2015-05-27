@@ -29,7 +29,7 @@ namespace Bourse
             if (connInfo.State == MaasOne.Base.ConnectionState.Success)
             {
                 QuotesResult result = resp.Result;
-                for (int i = 0; result.Items[i] != null; i++)
+                for (int i = 0; i < result.Items.Count(); i++)
                 {
                     Resultat.Add(Convert.ToDouble(result.Items[i].LastTradePriceOnly.ToString()));
                 }

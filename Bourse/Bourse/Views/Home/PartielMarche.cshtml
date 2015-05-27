@@ -12,11 +12,12 @@
     </thead>
     <tbody>
         @{
+            DateTime count = DateTime.Now;
             YahooFinance yf = new YahooFinance();
             int Qte = 1;
             if (Model != null)
             {
-                Model.SelectAll();
+                Model.Select20from(0);
 
                 while (Model.Next())
                 {
@@ -34,6 +35,15 @@
                     </tr>
                 }
             }
+            TimeSpan ts = (count-DateTime.Now);
+            <tr>
+                <td>Milli: @ts.Milliseconds</td>
+                <td>Sec: @ts.Seconds</td>
+                <td>Min: @ts.Minutes</td>
+            </tr>
+            
         }
     </tbody>
 </table>
+<span>Milli:@ts.</span>
+<span>Milli:@ts.Milliseconds</span>
