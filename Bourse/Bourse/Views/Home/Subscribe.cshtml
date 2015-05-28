@@ -15,31 +15,31 @@
 
     <div class="form-horizontal">
         @Html.Label("Nom d'usager") <br />
-        @Html.TextBox("UserName", Model.UserName) <br /><br />
+        @Html.TextBox("UserName", Model.UserName, "", new { Class = "form-control" }) <br /><br />
 
 
         @Html.Label("Mot de passe")<br />
-        @Html.TextBox("Password", Model.Password)<br /><br />
+        @Html.TextBox("Password", Model.Password, "", new { Class = "form-control" })<br /><br />
 
 
         @Html.Label("Nom au complet")<br />
-        @Html.TextBox("FullName", Model.FullName)<br /><br />
+        @Html.TextBox("FullName", Model.FullName, "", new { Class = "form-control" })<br /><br />
 
 
         @Html.Label("Courriel")<br />
-        @Html.TextBox("EMail", Model.EMail)<br /><br />
+        @Html.TextBox("EMail", Model.EMail, "", new { Class = "form-control" })<br /><br />
 
         @Html.Label("Numero de carte de Crédit")<br />
-        @Html.TextBox("CarteCredit", Model.CarteCredit)<br /><br />
+        @Html.TextBox("CarteCredit", Model.CarteCredit, "", new { Class = "form-control" })<br /><br />
 
         @Html.Label("Solde à ajouter depuis la carte")<br />
-        @Html.TextBox("Solde", "1", new { @type = "number", @min = "1" })
+        @Html.TextBox("Solde", "1", new { @type = "number", @min = "1" , Class = "form-control" })
 
         <br />
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Créer..." class="btn btn-default" />
+                <input type="submit" value="Créer..." class="btn btn-primary" />
             </div>
         </div>
     </div>

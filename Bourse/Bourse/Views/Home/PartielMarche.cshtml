@@ -30,7 +30,7 @@
                             <a href=@Href("~/Home/Achat/" + @Model.Symbol)>@Model.Name</a>
                         </td>
                         <td>
-                            <td>@yf.GetStockPriceFromSymbol(Model.Symbol)$</td>
+                            <td>@Math.Round(yf.GetStockPriceFromSymbol(Model.Symbol),4)$</td>
                         </td>
                     </tr>
                 }
