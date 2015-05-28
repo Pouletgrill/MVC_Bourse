@@ -21,19 +21,35 @@
                 @Html.ActionLink("BourseSim", "Index", "Home", null, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Marché", "Marche", "Home")</li>
-                    <li>@Html.ActionLink("Inscription", "Subscribe", "Home")</li>
+
                     @{
                         if ((bool)Session["UserValid"])
                         {
-                            <li>@Html.ActionLink("Profil", "Profil", "Home")</li>
-                            <li>@Html.ActionLink("Mes Actions", "Actions", "Home")</li>
-                            <li>@Html.ActionLink("Déconnexion","Deconnexion", "Home")</li> 
+                            <ul class="nav navbar-nav">
+                                <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
+                                <li>@Html.ActionLink("Marché", "Marche", "Home")</li>
+                                <li>@Html.ActionLink("Inscription", "Subscribe", "Home")</li>
+                                <li>@Html.ActionLink("Mes Actions", "Actions", "Home")</li>
+                                </ul>
+                                <!---->
+                                <ul class="nav navbar-nav navbar-right">
+
+                                    <li><a href="@Url.Action("Profil", "Home")"><span class="glyphicon glyphicon-user"></span> Profil</a></li>
+                                    <li><a href="@Url.Action("Deconnexion", "Home")"><span class="glyphicon glyphicon-log-out"></span> Déconnexion</a></li>
+                                </ul>
+                        }
+                        else
+                        {
+                            <ul class="nav navbar-nav">
+                                <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
+                                <li>@Html.ActionLink("Marché", "Marche", "Home")</li>
+                            </ul>
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li><a href="@Url.Action("Subscribe", "Home")"><span class="glyphicon glyphicon-log-out"></span> Inscription</a></li>
+                                </ul>
                         }
                     }
-                </ul>
+                
             </div>
         </div>
     </div>
