@@ -12,17 +12,27 @@
     if (!(bool)Session["UserValid"])
     {
         <p>@TempData["Notice"]</p>
-        <h2>Authentification</h2>
-        using (Html.BeginForm())
-        {
-            @Html.Label("Nom d'usager") <br />
-            @Html.TextBox("UserName") <br />
+    <div class="row">
+        <div class="col-xs-12 col-md-4">
+            <div class="panel panel-default">
+                <div class="page-header">
+                    <h2>Authentification</h2>
+                </div>
+                <div class="panel-body">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.Label("Nom d'usager") <br />
+                        @Html.TextBox("UserName", "", new { Class = "form-control" }) <br />
 
-            @Html.Label("Mot de passe")<br />
-            @Html.Password("Password")<br />
+                        @Html.Label("Mot de passe")<br />
+                        @Html.Password("Password", "", new { Class = "form-control" })<br />
 
-            <br />
-            <button type="submit">Connexion...</button>
-        }
+                        <br />
+                        <button class="btn btn-primary" type="submit">Connexion...</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
     }
 }
