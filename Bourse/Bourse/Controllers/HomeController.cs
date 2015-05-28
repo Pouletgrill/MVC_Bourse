@@ -209,7 +209,7 @@ namespace Bourse.Controllers
             //Save Gain + delete Achat
             AchatModel Achat = new AchatModel(Session["MainDB"]);
             Achat.SelectByID(ID);
-            double Gain = Math.Round((yf.GetStockPriceFromSymbol(Symbol) * Achat.QteAction) - (Achat.PrixAchat * Achat.QteAction),2);
+            double Gain = Math.Round((yf.GetStockPriceFromSymbol(Symbol) * Achat.QteAction),2);
             Achat.DeleteRecordByID(ID);
             //Update User Solde
             UsersModel User = new UsersModel(Session["MainDB"]);
