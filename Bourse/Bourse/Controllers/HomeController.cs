@@ -1,6 +1,7 @@
 ﻿using Bourse.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -46,13 +47,24 @@ namespace Bourse.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult Marche()
+        public ActionResult Marche(int? id)
         {
+            if (id != null)
+                ViewBag.page = id;
+            else
+                ViewBag.page = 1;
+            BourseModel bourse = new BourseModel(Session["MainDB"]);
+            ViewBag.NbComp = bourse.count();
             return View();
         }
 
-        public ActionResult PartielMarche()
+        public ActionResult PartielMarche(int? id)
         {
+            if (id != null)
+                ViewBag.page = id;
+            else
+                ViewBag.page = 1;
+
             BourseModel bourse = new BourseModel(Session["MainDB"]);
             return PartialView(bourse);
         }

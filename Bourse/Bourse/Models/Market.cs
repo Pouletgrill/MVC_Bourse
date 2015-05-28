@@ -17,6 +17,7 @@ namespace Bourse.Models
         {
             SQLTableName = "BOURSE";
         }
+      
 
         public BourseModel()
             : base("")

@@ -25,7 +25,7 @@ namespace SqlExpressUtilities
     public class SqlExpressWrapper
     {
         // objet de connection
-        SqlConnection connection;
+        public SqlConnection connection;
         // chaine de connection
         public string connexionString;
         // Objet de lecture issue de la dernière requête SQL
@@ -159,6 +159,22 @@ namespace SqlExpressUtilities
             return reader.HasRows;
         }
 
+        public virtual int count()
+        {
+            // instancier l'objet de collection
+            connection = new SqlConnection(connexionString);
+            SqlCommand sqlcmd = new SqlCommand("select COUNT(SYMBOL) as val from BOURSE");
+            // affecter l'objet de connection à l'objet de requête
+            sqlcmd.Connection = connection;
+            // ouvrir la connection avec la bd
+            connection.Open();
+            // éxécuter la requête SQL et récupérer les enregistrements qui en découlent dans l'objet Reader
+            SqlDataReader reader = sqlcmd.ExecuteReader();
+            reader.Read();
+            int val = reader.GetInt32(0);
+            EndQuerySQL();
+            return val;
+        }
         // Extraire l'enregistrement d'id ID
         public bool SelectByID(String ID)
         {

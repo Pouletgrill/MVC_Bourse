@@ -17,7 +17,7 @@
             int Qte = 1;
             if (Model != null)
             {
-                Model.Select20from(0);
+                Model.Select20from((-1+(int)ViewBag.page)*20);
 
                 while (Model.Next())
                 {
@@ -30,20 +30,14 @@
                             <a href=@Href("~/Home/Achat/" + @Model.Symbol)>@Model.Name</a>
                         </td>
                         <td>
-                            <text>@yf.GetStockPriceFromSymbol(Model.Symbol)$</text>
+                            <td>@yf.GetStockPriceFromSymbol(Model.Symbol)$</td>
                         </td>
                     </tr>
                 }
             }
-            TimeSpan ts = (count-DateTime.Now);
-            <tr>
-                <td>Milli: @ts.Milliseconds</td>
-                <td>Sec: @ts.Seconds</td>
-                <td>Min: @ts.Minutes</td>
-            </tr>
+           
             
         }
     </tbody>
 </table>
-<span>Milli:@ts.</span>
-<span>Milli:@ts.Milliseconds</span>
+

@@ -5,16 +5,95 @@
 
 
     <h2>Marché.</h2>
+<nav class="center-block">
+    <ul class="pagination">
+
+        @{
+            int nbPage = (int)Math.Ceiling((decimal)((int)ViewBag.NbComp) / 20);
+            if (ViewBag.page - 1 >= 1)
+            {
+                <li>
+                    <a href="@Url.Action("Marche",new {id=ViewBag.page-1})" aria-label="Next">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            }
+            for (int i = 1; i <= (int)nbPage; i++)
+            {
+                if (i == (int)ViewBag.page)
+                {
+                    <li class="active">@Html.ActionLink(i.ToString(), "Marche", new { id = i })</li>
+                }
+                else
+                {
+                    <li>@Html.ActionLink(i.ToString(), "Marche", new { id = i })</li>
+                }
+
+            }
+            if (ViewBag.page + 1 <= nbPage)
+            {
+                <li>
+                    <a href="@Url.Action("Marche",new {id=ViewBag.page+1})" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+
+            }
+
+        }
+
+    </ul>
+</nav>
     <div id="contributors">
         <img src="~/Images/loading.gif" />
     </div>
+<nav class="center-block">
+    <ul class="pagination">
+
+        @{
+           
+            if (ViewBag.page - 1 >= 1)
+            {
+                <li>
+                    <a href="@Url.Action("Marche",new {id=ViewBag.page-1})" aria-label="Next">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            }
+            for (int i = 1; i <= (int)nbPage; i++)
+            {
+                if (i == (int)ViewBag.page)
+                {
+                    <li class="active">@Html.ActionLink(i.ToString(), "Marche", new { id = i })</li>
+                }
+                else
+                {
+                    <li>@Html.ActionLink(i.ToString(), "Marche", new { id = i })</li>
+                }
+
+            }
+            if (ViewBag.page + 1 <= nbPage)
+            {
+                <li>
+                    <a href="@Url.Action("Marche",new {id=ViewBag.page+1})" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+
+            }
+
+        }
+
+    </ul>
+</nav>
+
 
 
 <script type="text/javascript">
     var timer;
     function ChargeVuePartielle() {
         $.ajax({
-            url: '@Url.Action("PartielMarche")',
+            url: '@Url.Action("PartielMarche",new {id=ViewBag.page})',
             type: 'GET',
             dataType: 'html',
             success: function (result) {
